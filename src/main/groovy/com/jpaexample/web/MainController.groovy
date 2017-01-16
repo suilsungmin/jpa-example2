@@ -15,7 +15,7 @@ import com.jpaexample.domain.tera.BlockFile
 import com.jpaexample.domain.tera.LoadingFile
 import com.jpaexample.domain.tera.NoteMemo
 import com.jpaexample.domain.tera.UnloadingFile
-import com.jpaexample.service.teraService
+import com.jpaexample.service.TeraService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -72,7 +72,8 @@ class MainController{
     LinePointDAO linePointDAO
 
     @Autowired
-    teraService teraStreamService
+    TeraService teraStreamService
+
     @RequestMapping("loading")
     List<LoadingFile> getLoading(){
         return loadingFileDAO.findAll()

@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service
  * Created by smpark on 2017-01-13.
  */
 @Service
-class teraService {
+class TeraService {
     @Autowired
     ProjectJpaDAO projectJpaDAO
 
@@ -54,37 +54,33 @@ class teraService {
         List children = [];
         children.addAll(projectGroupDAO.findByprjGrpId(prjGrpId))
         children.addAll(projectJpaDAO.findByprjGrpId(prjGrpId))
-//        children.addAll(dao.getChildProjectGroups(prjGrpId))
-//        children.addAll(dao.getChildProjects(prjGrpId))
         return children
     }
 
 
     BlockFlow getBlockFlow(Project project) {
         BlockFlow flow = new BlockFlow();
-        flow.blocks = blockDAO.findByPrjIdAndPrjVerId(project.prjId,project.curVerId)
-        flow.blockDependencies = blockDependencyDAO.findByPrjIdAndPrjVerId(project.prjId, project.curVerId)
-//        flow.blockDependencies = blockDependencyDAO.getBlockDependencies(project)
-//        flow.blocks = blockDAO.getBlocks(project)
+        flow.blocks = blockDAO.findByPrjIdAndPrjVerId(project)
+        flow.blockDependencies = blockDependencyDAO.findByPrjIdAndPrjVerId(project)
 
         flow.blocks.each {
             if(it.blockType == BlockType.UNLOAD) {
-                it.dataFiles = unloadingFileDAO.findByPrjIdAndPrjVerIdAndBlockId(it.prjId, it.prjVerId, it.blockId)
+                it.dataFiles = unloadingFileDAO.findByPrjIdAndPrjVerIdAndBlockId(it)
             } else if(it.blockType == BlockType.LOAD) {
-                it.dataFiles = loadingFileDAO.findByPrjIdAndPrjVerIdAndBlockId(it.prjId,it.prjVerId,it.blockId)
+                it.dataFiles = loadingFileDAO.findByPrjIdAndPrjVerIdAndBlockId(it)
             } else {
-                it.dataFiles = blockFileDAO.findByPrjIdAndPrjVerIdAndBlockId(it.prjId, it.prjVerId, it.blockId)
+                it.dataFiles = blockFileDAO.findByPrjIdAndPrjVerIdAndBlockId(it)
             }
         }
 
-        flow.noteMemos = noteMemoDAO.findByPrjIdAndPrjVerId(project.prjId, project.curVerId)
-        flow.projectExecutions = projectExecutionDAO.findByPrjIdAndPrjVerId(project.prjId, project.curVerId)
+        flow.noteMemos = noteMemoDAO.findByPrjIdAndPrjVerId(project)
+        flow.projectExecutions = projectExecutionDAO.findByPrjIdAndPrjVerId(project)
         return flow
     }
 
 
     List<ProjectExecution> getProjectExecutions(Project project) {
-        return projectExecutionDAO.findByPrjIdAndPrjVerId(project.prjId, project.curVerId)
+        return projectExecutionDAO.findByPrjIdAndPrjVerId(project)
     }
 
 }

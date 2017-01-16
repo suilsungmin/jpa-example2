@@ -36,7 +36,7 @@ class ProjectExecution implements Serializable {
     @Column(name="execution_type")
     Integer executionType
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = BlockExecution)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = BlockExecution)
     @JoinColumns([@JoinColumn(name="prj_id", referencedColumnName = "prj_id"),@JoinColumn(name="exec_log_id",referencedColumnName="exec_log_id")])
     List<BlockExecution> blockExecutions = []
 }
