@@ -14,7 +14,15 @@ import javax.persistence.Column
 @Entity
 @Table(name="block_vs_file")
 @DiscriminatorValue("BLOCK")
+@IdClass(BlockFilePK)
 class BlockFile extends DataFile {
+    @Id
+    Integer prjVerId
+    @Id
+    Integer prjId
+    @Id
+    Integer blockId
+
     @Id
     @Column(name="role_type_cd")
     @Enumerated(EnumType.ORDINAL)

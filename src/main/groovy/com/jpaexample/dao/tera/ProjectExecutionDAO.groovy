@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
  * Created by smpark on 2017-01-12.
  */
 interface ProjectExecutionDAO extends JpaRepository<ProjectExecution, Integer>{
-
+    List<ProjectExecution> findByPrjIdAndPrjVerId(Integer prjId, Integer prjVerId)
 }

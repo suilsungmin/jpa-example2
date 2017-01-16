@@ -50,7 +50,7 @@ class Block implements Serializable {
     String blockKindBefore
     String blockKindAfter
     @Transient
-    List<Object> datafiles = []
+    List<DataFile> dataFiles = []
 
 
 //    @Any( metaColumn = @Column(name="block_kind_cd"))
