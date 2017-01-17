@@ -20,7 +20,7 @@ import javax.persistence.Table
  */
 @Entity
 @Table(name="todo")
-class Todo {
+class Todo implements Serializable{
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id
     @Any(
@@ -36,6 +36,7 @@ class Todo {
     )
     @Cascade(value = org.hibernate.annotations.CascadeType.ALL)
     @JoinColumn(name="content_id" )
+    @JsonIgnoreProperties(["hibernateLazyInitializer", "handler"])
     Info info
 }
 

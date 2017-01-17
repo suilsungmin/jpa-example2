@@ -1,5 +1,6 @@
 package com.jpaexample.domain
 
+import javax.persistence.Column
 import javax.persistence.DiscriminatorValue
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -19,6 +20,8 @@ import javax.persistence.Table
 class Content implements Info{
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id
+    @Column(name = "content_id")
+    Integer contentId
     String content
 //    @OneToMany(fetch = FetchType.EAGER, targetEntity = Comments)
 //    @JoinColumn(name = "comment_id")

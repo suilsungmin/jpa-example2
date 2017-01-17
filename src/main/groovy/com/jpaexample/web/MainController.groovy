@@ -102,6 +102,10 @@ class MainController implements InitializingBean{
     List<BlockFile> getPrjExe(){
         return projectExecutionDAO.findAll()
     }
+    @RequestMapping("todo")
+    List<Todo> getTodo(){
+        return todoDAO.findAll()
+    }
 
     @Override
     void afterPropertiesSet() throws Exception {
