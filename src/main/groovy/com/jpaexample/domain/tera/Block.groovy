@@ -1,5 +1,7 @@
 package com.jpaexample.domain.tera
 
+import com.jpaexample.domain.code.BlockStatusConverter
+import com.jpaexample.domain.code.BlockTypeConverter
 import com.jpaexample.domain.code.BlockStatus
 import com.jpaexample.domain.code.BlockType
 
@@ -29,10 +31,10 @@ class Block implements Serializable {
     @Column(name="nm")
     String name
     @Column(name="block_kind_cd")
-    @Enumerated(EnumType.ORDINAL)
+    @Convert(converter = BlockTypeConverter)
     BlockType blockType
     @Column(name="block_status_cd")
-    @Enumerated(EnumType.ORDINAL)
+    @Convert(converter = BlockStatusConverter)
     BlockStatus blockStatus
     String parallel
     @Column(name="pos_x")
@@ -49,8 +51,12 @@ class Block implements Serializable {
     Date updatedDate
     String blockKindBefore
     String blockKindAfter
-    @Transient
-    List<DataFile> dataFiles = []
+    @OneToMany(mappedBy = "block")
+    List<LoadingFile> dataFiles = []
+
+
+//    @Transient
+//    List<DataFile> dataFiles = []
 
 
 //    @Any( metaColumn = @Column(name="block_kind_cd"))

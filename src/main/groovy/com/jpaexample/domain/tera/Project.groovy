@@ -21,7 +21,7 @@ class Project implements Serializable {
     @Column(name="nm")
     String name
     @Column(name="last_exec_dt")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     Date lastExecDate
     @Column(name="desc11")
     String desc
@@ -33,7 +33,7 @@ class Project implements Serializable {
     @Temporal(TemporalType.DATE)
     Date createdDate
     @Column(name="up_dt")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     Date updatedDate
     @Column(name="lock_user_nm")
     String lockUserName

@@ -8,7 +8,7 @@ package com.jpaexample.domain.code
  * To change this template use File | Settings | File Templates.
  */
 public enum DepType implements TeraCode {
-    TEMP(0), SUCCESS(1), FAIL(2), COMPLETE(3), PIPE(4)
+    SUCCESS(1), FAIL(2), COMPLETE(3), PIPE(4)
 
 
     DepType(Integer code) {

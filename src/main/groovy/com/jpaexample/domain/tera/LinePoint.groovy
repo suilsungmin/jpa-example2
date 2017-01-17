@@ -22,10 +22,15 @@ class LinePoint implements Serializable {
     @Id
     @Column(name="block_id")
     Integer blockId
+
     @Id
+    @Column(name = "sequence")
     Integer sequence
+
     @Id
+    @Column(name="sequence2")
     Integer sequence2
+
     @Column(name="pos_x")
     Integer posX
     @Column(name="pos_y")

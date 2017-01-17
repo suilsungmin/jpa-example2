@@ -22,10 +22,10 @@ class ProjectGroup implements Serializable {
     @Column(name="owner_nm")
     String ownerName
     @Column(name="cp_dt")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     Date createdDate
     @Column(name="up_dt")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     Date updatedDate
     @Column(name="perm")
     Integer permission

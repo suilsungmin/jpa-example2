@@ -24,10 +24,10 @@ class ProjectExecution implements Serializable {
     Integer execLogId
     Integer prjVerId
     @Column(name="begin_dt")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     Date beginDate
     @Column(name="end_dt")
-
+    @Temporal(TemporalType.TIMESTAMP)
     Date endDate
     @Column(name="final_status_cd")
     @Enumerated(EnumType.ORDINAL)
@@ -35,7 +35,6 @@ class ProjectExecution implements Serializable {
     Integer sequence
     @Column(name="execution_type")
     Integer executionType
-
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = BlockExecution)
     @JoinColumns([@JoinColumn(name="prj_id", referencedColumnName = "prj_id"),@JoinColumn(name="exec_log_id",referencedColumnName="exec_log_id")])
     List<BlockExecution> blockExecutions = []

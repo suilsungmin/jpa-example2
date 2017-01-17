@@ -1,6 +1,7 @@
 package com.jpaexample.domain.tera
 
 import com.jpaexample.domain.code.BlockStatus
+import com.jpaexample.domain.code.BlockStatusConverter
 
 import javax.persistence.*
 import javax.persistence.Column
@@ -28,7 +29,7 @@ class BlockExecution implements Serializable{
     String logStdout
     Integer logStatusCd
     @Column(name="exit_status_cd")
-    @Enumerated(EnumType.ORDINAL)
+    @Convert(converter = BlockStatusConverter)
     BlockStatus exitStatus
     String outputAmt
     String memAvgAmt
@@ -37,13 +38,13 @@ class BlockExecution implements Serializable{
     String cpuMaxAmt
     String memoryArea
     @Column(name="begin_dt")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     Date beginDate
     @Column(name="end_dt")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     Date endDate
     @Column(name="cr_dt")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     Date createdDate
     @Column(name="log_stderr_nm")
     String logStderrName

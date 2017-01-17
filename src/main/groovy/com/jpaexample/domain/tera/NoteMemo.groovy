@@ -1,10 +1,13 @@
 package com.jpaexample.domain.tera
 
+import com.jpaexample.domain.code.BlockStatusConverter
+import com.jpaexample.domain.code.BlockTypeConverter
 import com.jpaexample.domain.code.BlockStatus
 import com.jpaexample.domain.code.BlockType
 
 import javax.persistence.*
 import javax.persistence.Column
+
 /**
  * Created with IntelliJ IDEA.
  * User: jsungnam
@@ -26,10 +29,10 @@ class NoteMemo implements Serializable {
     @Column(name="nm")
     String name
     @Column(name="block_kind_cd")
-    @Enumerated(EnumType.ORDINAL)
+    @Convert(converter = BlockTypeConverter)
     BlockType blockType
     @Column(name="block_status_cd")
-    @Enumerated(EnumType.ORDINAL)
+    @Convert(converter = BlockStatusConverter)
     BlockStatus blockStatus
     @Column(name="pos_x")
     Integer posX
@@ -37,11 +40,10 @@ class NoteMemo implements Serializable {
     Integer posY
     @Column(name="desc1")
     String desc
-    @Column(name="cr_dt")
-    @Temporal(TemporalType.DATE)
+    @Column(name="cr_dt", columnDefinition = "DATETIME")
     Date createdDate
-    @Column(name="up_dt")
-    @Temporal(TemporalType.DATE)
+    @Column(name="up_dt", columnDefinition = "DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
     Date updatedDate
     String blockKindBefore
     String blockKindAfter
