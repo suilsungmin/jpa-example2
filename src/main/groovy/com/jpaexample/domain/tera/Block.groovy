@@ -51,12 +51,8 @@ class Block implements Serializable {
     Date updatedDate
     String blockKindBefore
     String blockKindAfter
-    @OneToMany(mappedBy = "block")
-    List<LoadingFile> dataFiles = []
-
-
-//    @Transient
-//    List<DataFile> dataFiles = []
+    @Transient
+    List<DataFile> dataFiles = []
 
 
 //    @Any( metaColumn = @Column(name="block_kind_cd"))

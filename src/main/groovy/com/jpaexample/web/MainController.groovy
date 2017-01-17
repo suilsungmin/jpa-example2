@@ -1,5 +1,6 @@
 package com.jpaexample.web
 
+import com.jpaexample.dao.TodoRepository
 import com.jpaexample.dao.tera.BlockDAO
 import com.jpaexample.dao.tera.BlockDependencyDAO
 import com.jpaexample.dao.tera.BlockExecutionDAO
@@ -11,11 +12,15 @@ import com.jpaexample.dao.tera.ProjectExecutionDAO
 import com.jpaexample.dao.tera.ProjectGroupDAO
 import com.jpaexample.dao.tera.ProjectJpaDAO
 import com.jpaexample.dao.tera.UnloadingFileDAO
+import com.jpaexample.domain.Content
+import com.jpaexample.domain.NonContent
+import com.jpaexample.domain.Todo
 import com.jpaexample.domain.tera.BlockFile
 import com.jpaexample.domain.tera.LoadingFile
 import com.jpaexample.domain.tera.NoteMemo
 import com.jpaexample.domain.tera.UnloadingFile
 import com.jpaexample.service.TeraService
+import org.springframework.beans.factory.InitializingBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -24,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController
  * Created by smpark on 2017-01-13.
  */
 @RestController
-class MainController{
+class MainController implements InitializingBean{
 
 //    @Autowired
 //    TodoService todoService
@@ -34,9 +39,9 @@ class MainController{
 //
 //    @Autowired
 //    NonContentRepository nonContentDAO
-//
-//    @Autowired
-//    TodoRepository todoDAO
+
+    @Autowired
+    TodoRepository todoDAO
 
     @Autowired
     ProjectJpaDAO projectJpaDAO
@@ -98,4 +103,15 @@ class MainController{
         return projectExecutionDAO.findAll()
     }
 
+    @Override
+    void afterPropertiesSet() throws Exception {
+        Todo todo1 = new Todo()
+        Content content = new Content(content: "content")
+        todo1.setInfo(content)
+        Todo todo2 = new Todo()
+        NonContent nonContent = new NonContent(nonContent: "nonContent")
+        todo2.setInfo(nonContent)
+        todoDAO.save(todo1)
+        todoDAO.save(todo2)
+    }
 }
